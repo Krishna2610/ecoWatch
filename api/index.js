@@ -23,3 +23,14 @@ app.listen(3000,()=> {console.log('Server is running on port 3000');});
 //all routes defined here
 app.use("/api/user",userRouter)
 app.use("/api/auth",authRouter)
+//a middleware is created to handle errors as it will be repititive
+// "next" is to go to the next middle ware
+app.use((err,req,res,next)=>{
+const statusCode=err.statusCode || 500
+ const message=err.message|| "Internal Server Error"
+ return res.status(statusCode).json({
+    sucess:false,
+    statusCode,
+    message
+ })
+})
