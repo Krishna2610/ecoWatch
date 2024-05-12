@@ -7,7 +7,8 @@ export const test= (req,res)=>{
 
 //if the user we got and teh user we are trying to change are not same then 
 export const updateUser= async (req,res,next)=>{
-if (req.user.id!== req.params.id) return next (errorHandler(401,"You can onlt update your own accont!"))
+if (req.user.id!== req.params.id) 
+    return next(errorHandler(401,"You can only update your own accont!"))
 try {
     if(req.body.password){
         req.body.password=bcryptjs.hashSync(req.body.password,10)
@@ -30,4 +31,4 @@ try {
     next(error)
     
 }
-}
+};
