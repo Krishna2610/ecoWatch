@@ -121,7 +121,8 @@ const handleSubmit= async (e)=>{
     setError(false)
      if(formData.imageUrls.length<1) { setLoading(false);return setError('You must upload at least one image !!')}
       // converting both to number by adding plus
-     
+      setLoading(true);
+      setError(false);
 
       if(+formData.regularPrice<+formData.discountPrice){ setLoading(false); return setError("Discount Price must be less than regular Price ")}
       const res = await fetch('/api/listing/create', {
