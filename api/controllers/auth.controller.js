@@ -2,7 +2,6 @@ import User from "../models/user.model.js";
 import bcryptjs from 'bcryptjs'
 import { errorHandler } from "../utils/error.js";
 import jwt from 'jsonwebtoken'
-import { useDispatch } from 'react-redux';
 
 //async is used to enable await as saving to db takes time 
 export const signup= async(req,res,next)=>{

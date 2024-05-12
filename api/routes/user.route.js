@@ -1,5 +1,6 @@
 import express from 'express';
-import { test } from '../controllers/user.controller.js';
+import { test,updateUser } from '../controllers/user.controller.js';
+import { verifyToken } from '../utils/verifyuser.js';
 
 const router= express.Router();
 // get is to get the info and post is to send to db
@@ -8,6 +9,6 @@ const router= express.Router();
 //     res.json({ message:"Hello World!"})
 // })
 router.get('/test',test)
-
+router.post('/update/:id',verifyToken,updateUser)
 
 export default router;
