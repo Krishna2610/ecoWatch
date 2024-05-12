@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import userRouter from './routes/user.route.js';
 import authRouter from './routes/auth.route.js';
-import cookieParsers from 'cookie-parser';
+import listingRouter from './routes/listing.route.js';
 import cookieParser from 'cookie-parser';
 dotenv.config();
 mongoose.connect(process.env.MONGO).then(() =>
@@ -25,6 +25,7 @@ app.listen(3000,()=> {console.log('Server is running on port 3000');});
 //all routes defined here
 app.use("/api/user",userRouter)
 app.use("/api/auth",authRouter)
+app.use("/api/listing",listingRouter)
 //a middleware is created to handle errors as it will be repititive
 // "next" is to go to the next middle ware
 app.use((err,req,res,next)=>{
