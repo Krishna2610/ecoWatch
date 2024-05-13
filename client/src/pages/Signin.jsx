@@ -85,7 +85,7 @@ export default function SignIn() {
       <OAuth></OAuth>
       </form>
       <div className='flex gap-2 mt-5'>
-        <p>Create an account!!</p>
+        <p className='font-bold'>Create an account!!</p>
         <Link to='/sign-up' className='text-blue-700 font-bold'>Sign Up</Link>
       </div>
       {error && <p className='text-red-500 mt-2'>{error}</p>}

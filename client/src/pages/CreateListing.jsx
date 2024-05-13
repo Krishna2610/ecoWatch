@@ -176,7 +176,7 @@ const handleSubmit= async (e)=>{
             value={formData.description}></textarea>
 
             <input type="text"
-            className='border-4 border-tealc focus:outline-none p-3 rounded-lg placeholder-black' 
+            className='border-4 flex-col sm:flex-row border-tealc focus:outline-none p-3 rounded-lg placeholder-black' 
             placeholder='Address' id='address'  required 
             onChange={handleChange}
             value={formData.address} ></input>
@@ -186,7 +186,7 @@ const handleSubmit= async (e)=>{
                         <span>Sale</span>
             </div>
             <div className='flex gap-2'>
-                        <input type="checkbox" id="rent" className='w-5'onChange={handleChange} checked={formData.type==='rent'}/>                        
+                        <input type="checkbox" id="rent" className='w-5 'onChange={handleChange} checked={formData.type==='rent'}/>                        
                         <span>Rent</span>
             </div>
             <div className='flex gap-2'>
@@ -204,17 +204,17 @@ const handleSubmit= async (e)=>{
         </div>
         <div className='flex flex-wrap gap-6'>
              <div className='flex items-center gap-2'>
-                    <input className='border-4 border-tealc focus:outline-none p-3 rounded-lg placeholder-black'type="number" id="bedrooms" min='1' max='10' required onChange={handleChange}
+                    <input className='border-4 border-tealc flex-col sm:flex-row focus:outline-none p-3 rounded-lg placeholder-black'type="number" id="bedrooms" min='1' max='10' required onChange={handleChange}
             value={formData.bedrooms}></input>
                     <p >Beds</p>
              </div>
-             <div className='flex items-center gap-2'>
+             <div className='flex flex-wrap items-center gap-2'>
                     <input className='border-4 border-tealc focus:outline-none p-3 rounded-lg placeholder-black' type="number" id="bathrooms" min='1' max='10' required  onChange={handleChange}
             value={formData.bathrooms}></input>
                     <p >Baths</p>
              </div>             
-             <div className='flex items-center gap-2'>
-                    <input className='border-4 border-tealc focus:outline-none p-3 rounded-lg placeholder-black' type="number" id="regularPrice" min='1' max='100000' required  onChange={handleChange}
+             <div className='flex flex-wrap items-center gap-2'>
+                    <input className='border-4 border-tealc flex-col sm:flex-row focus:outline-none p-3 rounded-lg placeholder-black' type="number" id="regularPrice" min='1' max='100000' required  onChange={handleChange}
             value={formData.regularPrice}></input>
                     <div className='flex flex-col items-center'>
                     <p >Regular Price</p>
@@ -222,7 +222,7 @@ const handleSubmit= async (e)=>{
                     </div>
              </div>
              {formData.offer&&(
-              <div className='flex items-center gap-2'>
+              <div className='flex flex-wrap items-center gap-2'>
                     <input className='border-4 border-tealc focus:outline-none p-3 rounded-lg' type="number" id="discountPrice" min='0' max='100000' required onChange={handleChange}
             value={formData.discountPrice}></input>
                     <div className='flex flex-col items-center'>
@@ -241,7 +241,7 @@ const handleSubmit= async (e)=>{
           <p className='font-semibold'style={{ fontFamily: 'Anton',fontSize:15 }}>Note :
           <span className='text-brownc'>     The first image will be the cover (Maximum 6)</span>
           </p>
-          <div className=' flex gap-3'> 
+          <div className=' flex  gap-3'> 
             <input  onChange={(e)=> setFiles(e.target.files)} className='border-4 border-tealc focus:outline-none p-3 rounded-lg text-semibold placeholder-black' type="file" id="images" accept='image/*' multiple>
             </input>
             <button type='button'
