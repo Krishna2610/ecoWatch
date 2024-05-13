@@ -53,7 +53,12 @@ export default function SignIn() {
   };
   
   return (
+    <body className='bg-yellow-100'>
+
     <div className='p-3 max-w-lg mx-auto '>
+      <div>
+     </div>
+     <div></div>
       {/* <h1 className='text-3xl text-center font-bold font-custom text-tealc my-7'>Sign In</h1> */}
       <h1 className='text-4xl md:text-5xl lg:text-6xl text-center font-bold font-custom text-teal-700 my-7 md:my-10 lg:my-12'>
   Sign In
@@ -90,5 +95,6 @@ export default function SignIn() {
       </div>
       {error && <p className='text-red-500 mt-2'>{error}</p>}
     </div>
+    </body>
   );
 }
