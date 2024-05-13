@@ -5,6 +5,7 @@ import { app } from '../firebase';
 import { updateUserFailure,updateUserSuccess,updateUserStart,deleteUserFailure,deleteUserStart,deleteUserSuccess, signoutUserStart, signoutUserFailure, signoutUserSuccess } from '../redux/user/userSlice';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import backgroundImage from './profileb.png'; // Import your image file
 
 export default function Profile() {
   const fileRef = useRef(null);
@@ -145,8 +146,13 @@ const handleListingDelete = async (listingId) => {
 
 
   return (
-    <div className='p-3 max-w-lg mx-auto'>
-      <h1 className='text-3xl text-center font-bold font-custom my-7'>Profile</h1>
+    <div style={{ backgroundImage: `url(${backgroundImage}`, backgroundSize: 'cover',   backgroundAttachment: 'fixed',
+  }}>
+<div
+      className='p-3 max-w-lg mx-auto'
+      
+    >      <h1           style={{ fontFamily: 'Anton' }}
+    className=' text-3xl text-center text-tealc  my-7 '>Profile</h1>
       <form onSubmit= {handleSubmit} className='flex flex-col gap-4'>
         <input onChange={(e)=> setFile(e.target.files[0] )}
         type="file" 
@@ -160,69 +166,71 @@ const handleListingDelete = async (listingId) => {
           alt="profile" 
           className='rounded-full h-24 w-24 object-cover cursor-pointer self-center mt-2'
         />
-        <p className='text-sm self-center'>
+        <p className='text-extrabold self-center text-lg'>
           {fileUploadError ? (
-            <span className='text-red-700'>
+            <span style={{ fontFamily: 'Anton',fontSize:20 }}className='text-red-200 mt-3 text-extrabold text-lg p-2 rounded'>
               Error Image upload (image must be less than 2 mb)
             </span>
           ) : filePerc > 0 && filePerc < 100 ? (
             <span className='text-slate-700'>{`Uploading ${filePerc}%`}</span>
           ) : filePerc === 100 ? (
-            <span className='text-green-700'>Image successfully uploaded!</span>
+            <span style={{ fontFamily: 'Anton',fontSize:20 }}className='text-green-200 mt-3 text-extrabold text-lg p-2 rounded'>Image successfully uploaded!</span>
           ) : (
             ''
           )}
         </p>
-        <input type="text" placeholder='username' id='username' defaultValue={currentUser.username} onChange={handleChange}/>
-        <input type="email" placeholder='Email' id='email' defaultValue={currentUser.email}onChange={handleChange} />
-        <input type="password" placeholder='Password' id='password'onChange={handleChange} />
-        <button disabled ={loading}className='bg-slate-700 text-white rounded-lg p-3 uppercase hover:opacity-95 disabled:opacity-80'>
+        <input type="text"className='border-4 border-tealc focus:outline-none p-3 rounded-lg placeholder-black'  placeholder='username' id='username' defaultValue={currentUser.username} onChange={handleChange}/>
+        <input type="email"className='border-4 border-tealc focus:outline-none p-3 rounded-lg placeholder-black'  placeholder='Email' id='email' defaultValue={currentUser.email}onChange={handleChange} />
+        <input type="password"className='border-4 border-tealc focus:outline-none p-3 rounded-lg placeholder-black'  placeholder='Password' id='password'onChange={handleChange} />
+        <button disabled ={loading}className='bg-slate-700 text-white text-bold rounded-lg p-3 uppercase hover:opacity-95 disabled:opacity-80'>
           {loading?'Loading....' :'Update'}
         
         </button>
-        <Link className='bg-brownc p-3  text-black-700 rounded-lg uppercase text-center hover:opacity:75' to={"/create-listing"}>
+        <Link className='bg-brownc p-3 text-bold text-black-700 rounded-lg uppercase text-center hover:opacity:75' to={"/create-listing"}>
         Create listing
         </Link>
       </form>
       <div className='flex justify-between mt-5'>
-        <span onClick={handleDeleteUser}className='text-red-700 cursor-pointer'>Delete Account</span>
-        <span onClick={handleSignOut} className='text-res-700 cursor-pointer'>Sign Out</span>
+        <span onClick={handleDeleteUser}className='border-4 bg-red-700 border-red-700 focus:outline-none p-3 font-semibold rounded-lg text-white cursor-pointer'>Delete Account</span>
+        <span onClick={handleSignOut} className='border-4 bg-red-700 border-red-700 focus:outline-none p-3 font-semibold rounded-lg text-white cursor-pointer'>Sign Out</span>
       </div>
-      <p className='text-red-700 mt-5 '>{error ? error:' ' }</p>
-      <p className='text-green-700 mt-5 '>{updateSuccess ? "User is updated Successfully":' ' }</p>
-      <button onClick={handleShowListings}className='text-green-700 w-full'>Show Listings</button>
-      <p className='text-red-700 mt-5'>{ShowListingsError?"Error showing Listings":" " }</p>
+      <p style={{ fontFamily: 'Anton',fontSize:20 }}className='text-red-200 mt-3 text-extrabold text-lg p-2 rounded'>{error ? error:' ' }</p>
+      <p style={{ fontFamily: 'Anton',fontSize:20 }}className='text-green-200 mt-3 text-extrabold text-lg p-2 rounded'>{updateSuccess ? "User is updated Successfully!!!":' ' }</p>
+      <button onClick={handleShowListings}className='text-white  bg-teal-700 rounded-lg p-3 border-greeen-700 w-full font-semibold'>Show Listings</button>
+      <p style={{ fontFamily: 'Anton',fontSize:20 }}className='text-red-200 mt-3 text-extrabold text-lg p-2 rounded'>{ShowListingsError?"Error showing Listings":" " }</p>
      {userListings && userListings.length>0 &&(
      <div className='flex flex-col gap-4'>
-     <h1 className='text-center mt-7 text-2xl font-semibold'>
+     <h1  style={{ fontFamily: 'Anton' }}
+    className=' text-3xl text-center text-tealc  my-7 '>
        Your Listings
      </h1>
      {userListings.map((listing) => (
        <div
          key={listing._id}
-         className='border rounded-lg p-3 flex justify-between items-center gap-4'
+         className=' border-4 border-solid border-black rounded-lg p-3 flex justify-between items-center gap-4'
        >
          <Link to={`/listing/${listing._id}`}>
            <img
              src={listing.imageUrls[0]}
              alt='listing cover'
-             className='h-16 w-16 object-contain'
+             className='h-20 w-30 object-contain '
            />
          </Link>
          <Link
-           className='text-slate-700 font-semibold  hover:underline truncate flex-1'
+         style={{ fontFamily: 'Anton' }}
+           className='text-slate-700 text-xl hover:underline truncate flex-1'
            to={`/listing/${listing._id}`}
          >
-           <p>{listing.name}</p>
+           <p >{listing.name}</p>
          </Link>
 
-         <div className='flex flex-col item-center'>
+         <div className='flex flex-col item-center gap-2'>
            <button
              onClick={() => handleListingDelete(listing._id)}
-             className='text-red-700 uppercase'
+             className='border-4 bg-red-700 border-red-700 w-full focus:outline-none p-3 font-semibold rounded-lg text-white cursor-pointer'
            >Delete</button>
             <Link to={`/update-listing/${listing._id}`}>
-             <button className='text-green-700 uppercase'>Edit</button>
+             <button className='border-4 bg-green-700 w-full border-green-700 focus:outline-none p-3 font-semibold rounded-lg text-white cursor-pointer'>Edit</button>
              </Link>
          </div>
        </div>
@@ -230,6 +238,7 @@ const handleListingDelete = async (listingId) => {
    </div>
  )}
 </div>
+ </div>
   );
 }
 

@@ -1,11 +1,11 @@
-import React, { userRef, useState } from 'react'
+import {  useState } from 'react'
 import {getDownloadURL, getStorage, ref, uploadBytesResumable} from 'firebase/storage'
 import {app} from '../firebase'
 
 import {useSelector} from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 export default function CreateListing() {
-  const {currentUser}=useSelector(state=>state.user)
+  const {currentUser}=useSelector((state)=>state.user)
   const navigate=useNavigate()
   const[files,setFiles]= useState([])
   const [formData,setFormData]=useState({
@@ -153,14 +153,16 @@ const handleSubmit= async (e)=>{
 
 
   return (
-    <main className='p-3 max-w-4xl mx-auto'>
-      <h1 className='text-3xl font-semibold text-center my-7'>
+<body className=' bg-fixed bg-greyc'>   
+ <main className='p-3 max-w-4xl mx-auto  '>
+      <h1 style={{ fontFamily: 'Anton' }}
+    className=' text-3xl text-center text-tealc  my-7 '>
         Create a Listing
       </h1>
       <form onSubmit={handleSubmit}className='flex flex-col sm:flex-row gap-4'>
         <div className='flex flex-col gap-4 flex-1'>
             <input type="text"
-            className='border-4 border-tealc focus:outline-none p-3 rounded-lg placeholder-black' 
+            className='border-4 border-tealc focus:outline-none p-3 rounded-lg placeholder-black'
             placeholder='Name' 
             id='name' maxLength='62' 
             minLength='10' 
@@ -168,12 +170,13 @@ const handleSubmit= async (e)=>{
             value={formData.name} ></input>
             
             <textarea type="text"
-            className='border-4 border-tealc focus:outline-none p-3 rounded-lg placeholder-black' 
+           className='border-4 border-tealc focus:outline-none p-3 rounded-lg placeholder-black'
             placeholder='Description' id='description' required 
             onChange={handleChange}
             value={formData.description}></textarea>
 
-            <input type="text"className='border-4 border-tealc focus:outline-none p-3 rounded-lg placeholder-black' 
+            <input type="text"
+            className='border-4 border-tealc focus:outline-none p-3 rounded-lg placeholder-black' 
             placeholder='Address' id='address'  required 
             onChange={handleChange}
             value={formData.address} ></input>
@@ -201,17 +204,17 @@ const handleSubmit= async (e)=>{
         </div>
         <div className='flex flex-wrap gap-6'>
              <div className='flex items-center gap-2'>
-                    <input className='border-4 border-tealc focus:outline-none p-3 rounded-lg' type="number" id="bedrooms" min='1' max='10' required onChange={handleChange}
+                    <input className='border-4 border-tealc focus:outline-none p-3 rounded-lg placeholder-black'type="number" id="bedrooms" min='1' max='10' required onChange={handleChange}
             value={formData.bedrooms}></input>
                     <p >Beds</p>
              </div>
              <div className='flex items-center gap-2'>
-                    <input className='border-4 border-tealc focus:outline-none p-3 rounded-lg' type="number" id="bathrooms" min='1' max='10' required  onChange={handleChange}
+                    <input className='border-4 border-tealc focus:outline-none p-3 rounded-lg placeholder-black' type="number" id="bathrooms" min='1' max='10' required  onChange={handleChange}
             value={formData.bathrooms}></input>
                     <p >Baths</p>
              </div>             
              <div className='flex items-center gap-2'>
-                    <input className='border-4 border-tealc focus:outline-none p-3 rounded-lg' type="number" id="regularPrice" min='1' max='100000' required  onChange={handleChange}
+                    <input className='border-4 border-tealc focus:outline-none p-3 rounded-lg placeholder-black' type="number" id="regularPrice" min='1' max='100000' required  onChange={handleChange}
             value={formData.regularPrice}></input>
                     <div className='flex flex-col items-center'>
                     <p >Regular Price</p>
@@ -235,35 +238,36 @@ const handleSubmit= async (e)=>{
         {/* right side */}
 
         <div  className='flex flex-col gap-4 flex-1'> 
-          <p className='font-semibold'>Images:
-          <span className='text-brownc'>The first image will be the cover (Maximum 6)</span>
+          <p className='font-semibold'style={{ fontFamily: 'Anton',fontSize:15 }}>Note :
+          <span className='text-brownc'>     The first image will be the cover (Maximum 6)</span>
           </p>
-          <div>
-            <input  onChange={(e)=> setFiles(e.target.files)} className='p-3 border-gray-300 rounded w-full' type="file" id="images" accept='image/*' multiple>
+          <div className=' flex gap-3'> 
+            <input  onChange={(e)=> setFiles(e.target.files)} className='border-4 border-tealc focus:outline-none p-3 rounded-lg text-semibold placeholder-black' type="file" id="images" accept='image/*' multiple>
             </input>
             <button type='button'
             disabled={uploading}
-             onClick={handleImageSubmit} className='p-3 text-green-700 border rounded uppercase hover:shadow-lg disabled:opacity-80 '>
+             onClick={handleImageSubmit} className='p-3 text-white  bg-green-700 border-green-700 border-4 rounded-lg uppercase hover:shadow-lg disabled:opacity-80 '>
                   {uploading ? 'Uploading...':'Upload' }  
             </button>
           </div>
-          <p className='text-red-700'>{imageUploadError&& imageUploadError}
+          <p style={{ fontFamily: 'Anton',fontSize:15 }}className='text-red-700 mt-3 text-extrabold text-lg p-2 rounded'>{imageUploadError&& imageUploadError}
             </p>
           {
             formData.imageUrls.length >0 &&  formData.imageUrls.map((url,index)=>(
               // <img src={url} alt='listing image' className='w-40 h-40 object-cover rounded-lg'/>
-              <div key={url}className='flex justify-between p-3 border items-center'>
+              <div key={url}className='flex justify-between p-3 border-4 border-black rounded-lg items-center'>
                 <img src={url} alt="listing image" className='w-20 h-20 object-contain rounded-lg'/>
-                <button type='button' onClick={()=>handleRemoveImage(index)} className='p-3 text-red-700 rounded-lg uppercase haover:opacity-75'>Delete</button>
+                <button type='button' onClick={()=>handleRemoveImage(index)} className='p-3 text-white border-4 w-f bg-red-700 border-red-700 rounded-lg uppercase haover:opacity-75'>Delete</button>
                 </div>
               
             ))
           }
           <button disabled={loading|| uploading}   className='p-3 bg-slate-700  text white rounded-lg uppercase hover:opcaity-95 disabled :opacity-80'>
             {loading?'Creating... ' :"Create Listing"}</button>
-            {error && <p className='text-red-700 text-sm'>{error}</p>}
+            {error && <p style={{ fontFamily: 'Anton',fontSize:15 }}className='text-red-700 mt-3 text-extrabold text-lg p-2 rounded'>{error}</p>}
         </div>
     </form>  
     </main>
+    </body>
   )
 }

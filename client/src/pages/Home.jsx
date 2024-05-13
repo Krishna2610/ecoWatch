@@ -5,7 +5,7 @@ import { Navigation } from 'swiper/modules';
 import SwiperCore from 'swiper';
 import 'swiper/css/bundle';
 import ListingItem from '../components/ListingItem';
-
+import backgroundImage from './2.png'
 export default function Home() {
   const [offerListings, setOfferListings] = useState([]);
   const [saleListings, setSaleListings] = useState([]);
@@ -46,9 +46,29 @@ export default function Home() {
     fetchOfferListings();
   }, []);
   return (
-    <div>
+    <div className='bg-slate-100'>
       {/* top */}
-      
+      <div style={{ backgroundImage: `url(${backgroundImage})`, filter: 'grayscale(50%)' }} className='bg-cover bg-fixed flex flex-col gap-6 p-28 px-3 max-w-6xl mx-auto'>
+
+
+        <h1 className='text-tealc  font-bold text-3xl lg:text-6xl'>
+          Tired of searching for your Dream Property?? <span className='text-black'>Find your perfect Spot with </span>
+          <span className="text-red-700 text-extrabold" style={{ fontFamily: 'Dancing Script',fontWeight:'bolder' }}>Nest Connect</span>
+          <br />
+          
+        </h1>
+        <div style={{ fontFamily: 'Jaro' ,fontSize:20}} className=' text-neutral-800 text-lg sm:text-lg font-extrabold  sm:text-extrabold'>
+          Come and Join the Family of Nest Connect!!
+          <br />
+          We Offer you wide range of options then why go Anywhere Else?
+        </div>
+        <Link
+          to={'/search'} style={{ fontFamily: 'Jaro'}}
+          className='text-xl sm:text-lg text-black font-bold hover:underline'
+        >
+          Let's Find you your Home !!
+        </Link>
+      </div>
 
       {/* swiper */}
       <Swiper navigation>
@@ -68,32 +88,15 @@ export default function Home() {
           ))}
       </Swiper>
 
-      <div className='flex flex-col gap-6 p-28 px-3 max-w-6xl mx-auto'>
-        <h1 className='text-tealc  font-bold text-3xl lg:text-6xl'>
-          Tired of searching for your Dream Property?? <span className='text-orangec'>Find your perfect Spot with Nest Connect</span>
-          <br />
-          
-        </h1>
-        <div className='text-brownc text-xs sm:text-sm'>
-          Come and Join the Family of Nest Connect!!
-          <br />
-          We Offer you wide range of options then why go Anywhere Else?
-        </div>
-        <Link
-          to={'/search'}
-          className='text-lg sm:text-sm text-brownc font-bold hover:underline'
-        >
-          Let's Find you your Home !!
-        </Link>
-      </div>
+      
       {/* listing results for offer, sale and rent */}
 
       <div className='max-w-6xl mx-auto p-3 flex flex-col gap-8 my-10'>
         {offerListings && offerListings.length > 0 && (
           <div className=''>
             <div className='my-3'>
-              <h2 className='text-2xl font-semibold text-slate-600'>Recent offers</h2>
-              <Link className='text-sm text-blue-800 hover:underline' to={'/search?offer=true'}>Show more offers</Link>
+              <h2 className='text-2xl font-semibold text-slate-600'style={{ fontFamily: 'Outfit'}}>Recent offers</h2>
+              <Link className='text-sm text-blue-800 hover:underline'style={{ fontFamily: 'Anton'}} to={'/search?offer=true'}>Show more offers</Link>
             </div>
             <div className='flex flex-wrap gap-4'>
               {offerListings.map((listing) => (
@@ -105,8 +108,8 @@ export default function Home() {
         {rentListings && rentListings.length > 0 && (
           <div className=''>
             <div className='my-3'>
-              <h2 className='text-2xl font-semibold text-slate-600'>Recent places for rent</h2>
-              <Link className='text-sm text-blue-800 hover:underline' to={'/search?type=rent'}>Show more places for rent</Link>
+              <h2 className='text-2xl font-semibold text-slate-600'style={{ fontFamily: 'Outfit'}}>Recent places for rent</h2>
+              <Link className='text-sm text-blue-800 hover:underline'style={{ fontFamily: 'Anton'}} to={'/search?type=rent'}>Show more places for rent</Link>
             </div>
             <div className='flex flex-wrap gap-4'>
               {rentListings.map((listing) => (

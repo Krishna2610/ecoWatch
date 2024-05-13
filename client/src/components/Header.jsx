@@ -1,4 +1,4 @@
-import React from 'react'
+
 import {FaSearch} from 'react-icons/fa'
 import { Link, useNavigate } from 'react-router-dom'
 import {useSelector} from 'react-redux'
@@ -27,12 +27,12 @@ export default function Header() {
         <header className='bg-greyc shadow-md'>
         <div className='flex justify-between items-center max-w-6xl mx-auto p-3'>
         <Link to="/">
-    <img className='flex  flex-wrap  rounded-lg h-20' src="/logo.png" alt="Logo" /> 
+    <img className='flex  flex-wrap  rounded-lg h-20 ' src="/logo.png" alt="Logo" /> 
 </Link>
           <Link to='/'>
             <h1 className="font-bold text-sm sm:text-4xl flex  flex-wrap font-custom" >
-              <span className="text-tealc font-bold ">Nest</span>
-              <span className="text-orangec font-thin">Connect</span>
+              <span className="text-tealc font-bold "style={{ fontFamily: 'Anton' }}>Nest</span>
+              <span className="text-orangec font-thin"style={{ fontFamily: 'Dancing Script' }}>Connect</span>
             </h1>
           </Link>
           
@@ -45,6 +45,7 @@ export default function Header() {
               type='text'
               
               className=' focus:outline-none w-24 sm:w-64 bg-transparent text-tealc placeholder-brownc   font-bold ' placeholder="Search....."
+              style={{ fontFamily: 'Poetsen One',fontSize:30 }}
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
@@ -54,19 +55,22 @@ export default function Header() {
           </form>
           <ul className='flex gap-4'>
             <Link to='/'>
-              <li className='hidden font-custom  text-2xl font-extrabold text-orangec sm:inline  hover:underline'>
+              <li style={{ fontFamily: 'Anton',fontSize:30 }}
+               className='hidden font-custom  text-2xl font-extrabold text-brownc sm:inline  hover:underline'>
                 Home
               </li>
             </Link>
             <Link to='/about'>
-              <li className='hidden sm:inline font-custom  text-2xl  text-orangec   font-extrabold hover:underline'>
+              <li style={{ fontFamily: 'Anton',fontSize:30 }}
+              className='hidden sm:inline font-custom  text-2xl  text-brownc   font-extrabold hover:underline'>
                 About
               </li>
             </Link>
             <Link to='/profile'>
               {currentUser ? (
                 <img
-                  className='rounded-full h-7 w-7 object-cover'
+                // style={{ fontSize:30 }}
+                  className='rounded-full h-9 w-9 object-cover'
                   src={currentUser.avatar}
                   alt='profile'
                 />
