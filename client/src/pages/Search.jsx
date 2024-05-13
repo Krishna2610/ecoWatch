@@ -139,7 +139,7 @@ export default function Search() {
               type='text'
               id='searchTerm'
               placeholder='Search...'
-              className='border rounded-lg p-3 w-full'
+              className='border-4 border-tealc focus:outline-none p-3 rounded-lg placeholder-black'
               value={sidebardata.searchTerm}
               onChange={handleChange}
             />
@@ -193,7 +193,7 @@ export default function Search() {
               <input
                 type='checkbox'
                 id='parking'
-                className='w-5'
+                className='w-5 '
                 onChange={handleChange}
                 checked={sidebardata.parking}
               />
@@ -230,10 +230,12 @@ export default function Search() {
         </form>
       </div>
       <div className='flex-1'>
-        <h1 className='text-3xl font-semibold border-b p-3 text-slate-700 mt-5'>
+        <h1 style={{ fontFamily: 'Anton' }}
+    className=' text-3xl text-center text-tealc  my-7 '>
           Listing results:
         </h1>
-        <div className='p-7 flex flex-wrap gap-4'>
+        <div style={{ fontFamily: 'Anton' }}
+    className=' text-3xl text-center text-tealc  my-7 '>
           {!loading && listings.length === 0 && (
             <p className='text-xl text-slate-700'>No listing found!</p>
           )}

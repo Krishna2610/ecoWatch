@@ -27,7 +27,7 @@ export default function Header() {
         <header className='bg-greyc shadow-md'>
         <div className='flex justify-between items-center max-w-6xl mx-auto p-3'>
         <Link to="/">
-    <img className='flex  flex-wrap  rounded-lg h-20 ' src="/logo.png" alt="Logo" /> 
+        <img className='flex flex-wrap rounded-full h-20' src="/logo.png" alt="Logo" />
 </Link>
           <Link to='/'>
             <h1 className="font-bold text-sm sm:text-4xl flex  flex-wrap font-custom" >
