@@ -26,12 +26,17 @@ export default function Header() {
     return (
         <header className='bg-greyc shadow-md'>
         <div className='flex justify-between items-center max-w-6xl mx-auto p-3'>
+        <Link to="/">
+    <img className='flex  flex-wrap  rounded-lg h-20' src="/logo.png" alt="Logo" /> 
+</Link>
           <Link to='/'>
             <h1 className="font-bold text-sm sm:text-4xl flex  flex-wrap font-custom" >
               <span className="text-tealc font-bold ">Nest</span>
               <span className="text-orangec font-thin">Connect</span>
             </h1>
           </Link>
+          
+
           <form
             onSubmit={handleSubmit}
             className='bg-greyc  text-black p-4 rounded-lg flex items-center '
@@ -39,22 +44,22 @@ export default function Header() {
             <input
               type='text'
               
-              className=' focus:outline-nonew-24 sm:w-64 bg-transparent text-black placeholder-black ' placeholder="Search....."
+              className=' focus:outline-none w-24 sm:w-64 bg-transparent text-tealc placeholder-brownc   font-bold ' placeholder="Search....."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
             <button>
-              <FaSearch className='text-slate-600' />
+              <FaSearch className='text-brownc' />
             </button>
           </form>
           <ul className='flex gap-4'>
             <Link to='/'>
-              <li className='hidden sm:inline text-slate-700 hover:underline'>
+              <li className='hidden font-custom  text-2xl font-extrabold text-orangec sm:inline  hover:underline'>
                 Home
               </li>
             </Link>
             <Link to='/about'>
-              <li className='hidden sm:inline text-slate-700 hover:underline'>
+              <li className='hidden sm:inline font-custom  text-2xl  text-orangec   font-extrabold hover:underline'>
                 About
               </li>
             </Link>
@@ -66,7 +71,7 @@ export default function Header() {
                   alt='profile'
                 />
               ) : (
-                <li className=' text-slate-700 hover:underline'> Sign in</li>
+                <li className='font-custom  text-2xl font-extrabold text-tealc text- hover:underline'> Sign in</li>
               )}
             </Link>
           </ul>

@@ -48,25 +48,7 @@ export default function Home() {
   return (
     <div>
       {/* top */}
-      <div className='flex flex-col gap-6 p-28 px-3 max-w-6xl mx-auto'>
-        <h1 className='text-slate-700 font-bold text-3xl lg:text-6xl'>
-          Find your next <span className='text-slate-500'>perfect</span>
-          <br />
-          place with ease
-        </h1>
-        <div className='text-gray-400 text-xs sm:text-sm'>
-          Sahand Estate is the best place to find your next perfect place to
-          live.
-          <br />
-          We have a wide range of properties for you to choose from.
-        </div>
-        <Link
-          to={'/search'}
-          className='text-xs sm:text-sm text-blue-800 font-bold hover:underline'
-        >
-          Let's get started...
-        </Link>
-      </div>
+      
 
       {/* swiper */}
       <Swiper navigation>
@@ -86,6 +68,24 @@ export default function Home() {
           ))}
       </Swiper>
 
+      <div className='flex flex-col gap-6 p-28 px-3 max-w-6xl mx-auto'>
+        <h1 className='text-tealc  font-bold text-3xl lg:text-6xl'>
+          Tired of searching for your Dream Property?? <span className='text-orangec'>Find your perfect Spot with Nest Connect</span>
+          <br />
+          
+        </h1>
+        <div className='text-brownc text-xs sm:text-sm'>
+          Come and Join the Family of Nest Connect!!
+          <br />
+          We Offer you wide range of options then why go Anywhere Else?
+        </div>
+        <Link
+          to={'/search'}
+          className='text-lg sm:text-sm text-brownc font-bold hover:underline'
+        >
+          Let's Find you your Home !!
+        </Link>
+      </div>
       {/* listing results for offer, sale and rent */}
 
       <div className='max-w-6xl mx-auto p-3 flex flex-col gap-8 my-10'>

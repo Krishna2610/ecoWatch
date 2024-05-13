@@ -2,13 +2,19 @@ import React from 'react'
 
 export default function About() {
   return (
-    <div className='py-20 px-4 max-w-6xl mx-auto'>
-      <h1 className='text-3xl font-bold mb-4 text-slate-800'>About Sahand Estate</h1>
-      <p className='mb-4 text-slate-700'>Sahand Estate is a leading real estate agency that specializes in helping clients buy, sell, and rent properties in the most desirable neighborhoods. Our team of experienced agents is dedicated to providing exceptional service and making the buying and selling process as smooth as possible.</p>
-      <p className='mb-4 text-slate-700'>
-      Our mission is to help our clients achieve their real estate goals by providing expert advice, personalized service, and a deep understanding of the local market. Whether you are looking to buy, sell, or rent a property, we are here to help you every step of the way.
-      </p>
-      <p className='mb-4 text-slate-700'>Our team of agents has a wealth of experience and knowledge in the real estate industry, and we are committed to providing the highest level of service to our clients. We believe that buying or selling a property should be an exciting and rewarding experience, and we are dedicated to making that a reality for each and every one of our clients.</p>
-    </div>
+
+
+      
+      <div className='py-20 px-4 max-w-6xl mx-auto'>
+        <h1 className='text-4xl md:text-5xl lg:text-3xl text-center font-bold font-custom text-teal-700 my-7 md:my-10 lg:my-12'>About Nest Connect</h1>
+        <p className='mb-4 font-bold lg:text-xl text-center text-brown'>Welcome to Nest Connect, your premier destination for all your real estate needs!!</p>
+        <p className='mb-4 font-semibold text-slate-700'>
+          Whether you're selling, or renting, our dedicated team of professionals is here to guide you every step of the way. With our extensive listings, personalized service, and commitment to excellence, we strive to make your real estate journey seamless and stress-free. Discover your dream property with Nest Connect today!
+        </p>
+        <p className='mb-4 font-semibold text-slate-700'>Our team of agents has a wealth of experience and knowledge in the real estate industry, and we are committed to providing the highest level of service to our clients. We believe that buying or selling a property should be an exciting and rewarding experience, and we are dedicated to making that a reality for each and every one of our clients.</p>
+      </div>
+    
   )
 }
+
+
