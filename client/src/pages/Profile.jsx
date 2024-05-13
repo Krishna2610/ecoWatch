@@ -111,17 +111,23 @@ const handleSignOut= async (e)=>{
 }
 
 const handleShowListings=async()=>{
+  console.log(userListings)
   try {
     setShowListingsError(false)
     const res =await fetch(`/api/user/listings/${currentUser._id}`)
     const data =await res.json()
-    if (data.sucess=== false){
+    if (data.sucess=== false|| !data.length)
+      {
       setShowListingsError(true);
+      // setShowListingsError(error.message)
       return
     }
     setUserListings(data)
   } catch (error) {
+    // setShowListingsError(error.message)
+
     setShowListingsError(true)
+
   }
 
 }
@@ -146,8 +152,7 @@ const handleListingDelete = async (listingId) => {
 
 
   return (
-    <div style={{ backgroundImage: `url(${backgroundImage}`, backgroundSize: 'cover',   backgroundAttachment: 'fixed',
-  }}>
+    <div style={{ backgroundImage: `url(${backgroundImage}`, backgroundSize: 'cover',   backgroundAttachment: 'fixed',  }}>
 <div
       className='p-3 max-w-lg mx-auto'
       
@@ -194,10 +199,10 @@ const handleListingDelete = async (listingId) => {
         <span onClick={handleDeleteUser}className='border-4 bg-red-700 border-red-700 focus:outline-none p-3 font-semibold rounded-lg text-white cursor-pointer'>Delete Account</span>
         <span onClick={handleSignOut} className='border-4 bg-red-700 border-red-700 focus:outline-none p-3 font-semibold rounded-lg text-white cursor-pointer'>Sign Out</span>
       </div>
-      <p style={{ fontFamily: 'Anton',fontSize:20 }}className='text-red-200 mt-3 text-extrabold text-lg p-2 rounded'>{error ? error:' ' }</p>
-      <p style={{ fontFamily: 'Anton',fontSize:20 }}className='text-green-200 mt-3 text-extrabold text-lg p-2 rounded'>{updateSuccess ? "User is updated Successfully!!!":' ' }</p>
+      <p style={{ fontFamily: 'Anton',fontSize:20 }} className='text-red-700 mt-3 text-extrabold text-lg p-2 rounded'>{error ? error:' ' }</p>
+      <p style={{ fontFamily: 'Anton',fontSize:20 }} className='text-green-200 mt-3 text-extrabold text-lg p-2 rounded'>{updateSuccess ? "User is updated Successfully!!!":' ' }</p>
       <button onClick={handleShowListings}className='text-white  bg-teal-700 rounded-lg p-3 border-greeen-700 w-full font-semibold'>Show Listings</button>
-      <p style={{ fontFamily: 'Anton',fontSize:20 }}className='text-red-200 mt-3 text-extrabold text-lg p-2 rounded'>{ShowListingsError?"Error showing Listings":" " }</p>
+      <p style={{ fontFamily: 'Anton',fontSize:20 }}className='text-red-700 mt-3 text-extrabold text-lg p-2 rounded'>{ShowListingsError ? "No Listings Available/Added " :" " }</p>
      {userListings && userListings.length>0 &&(
      <div className='flex flex-col gap-4'>
      <h1  style={{ fontFamily: 'Anton' }}
@@ -239,6 +244,9 @@ const handleListingDelete = async (listingId) => {
  )}
 </div>
  </div>
+
+
+
   );
 }
 

@@ -30,6 +30,9 @@ export default function SignUp() {
       });
       const data = await res.json();
       if (!res.ok) {
+        if (data.message && data.message.includes('E11000 duplicate key')) {
+          throw new Error('Username /email already exists');
+        }else 
         throw new Error(data.message || 'Failed to sign up');
       }
       setLoading(false);
