@@ -36,8 +36,10 @@ export default function SignIn() {
         body: JSON.stringify(formData),
       });
       const data = await res.json();
-      if (!res.ok) {
-        // throw new Error(data.message || 'Failed to sign up');
+      // if (!res.ok) {
+        if(data.sucess=== false){
+        // if (data.message && data.message.includes('E11000 duplicate key')) {
+        //   throw new Error('Username /email already exists');
         dispatch(signInFailure(data.message))
         return
       }
@@ -51,6 +53,7 @@ export default function SignIn() {
       dispatch(signInFailure(error.message))
     }
   };
+
   
   return (
     <body className='bg-yellow-100'>
@@ -93,7 +96,7 @@ export default function SignIn() {
         <p className='font-bold'>Create an account!!</p>
         <Link to='/sign-up' className='text-blue-700 font-bold'>Sign Up</Link>
       </div>
-      {error && <p className='text-red-500 mt-2'>{error}</p>}
+      {error && <p className='text-red-500 mt-2'> {error}</p>}
     </div>
     </body>
   );

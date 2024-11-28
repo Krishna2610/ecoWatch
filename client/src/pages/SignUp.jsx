@@ -45,10 +45,8 @@ export default function SignUp() {
   };
   
   return (
-    <div className='p-3 max-w-lg mx-auto'>
-     <div>
-     </div>
-     <div>
+    <body className='bg-yellow-100'>
+    <div className='p-3 max-w-lg mx-auto '>
       <h1 className='text-4xl md:text-5xl lg:text-6xl text-center font-bold font-custom text-teal-700 my-7 md:my-10 lg:my-12'>Sign Up</h1>
       <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
         <input
@@ -89,7 +87,7 @@ export default function SignUp() {
       {error && <p className='text-red-500 mt-2'>{error}</p>}
     </div>
 
-    </div>
-
+    
+    </body>
   );
 }

@@ -3,9 +3,7 @@ import bcryptjs from 'bcryptjs'
 import { errorHandler } from "../utils/error.js";
 import jwt from 'jsonwebtoken'
 
-//async is used to enable await as saving to db takes time 
 export const signup = async (req, res, next) => {
-// using console just prints the data but we need to save the data into the database hence it is removed
 // console.log(req.body)
 //get the values 
 const {username,email,password}= req.body;

@@ -10,17 +10,11 @@ export default function CreateListing() {
   const[files,setFiles]= useState([])
   const [formData,setFormData]=useState({
     imageUrls:[],
-    name:'',
+    issue:'',
     description:'',
     address:'',
-    type:'rent',
-    bedrooms:1,
-    bathrooms:1,
-    regularPrice:50,
-    discountPrice:0,
-    offer:false,
-    parking:false,
-    furnished:false,
+    type:'other',
+  
 
   })
 
@@ -93,20 +87,14 @@ export default function CreateListing() {
   }
 
 const handleChange= (e)=>{
-  if(e.target.id==='sale'|| e.target.id==='rent'){
+  if(e.target.id==='airpollution'|| e.target.id==='waterpollution' || e.target.id==='deforestation' || e.target.id==='illegaldumping' || e.target.id==='energywaste' || e.target.id==='other'){
     setFormData({
       ...formData,
       type: e.target.id
   });
   }
 
-if(e.target.id==='parking'|| e.target.id==='furnished'||e.target.id==='offer'){
-  setFormData({
-    ...formData,
-    [e.target.id]:e.target.checked
-  })
-}
-if(e.target.type==='number'||e.target.type==='text'||e.target.type==='textarea'){
+if(e.target.type==='text'||e.target.type==='textarea'){
   setFormData({
     ...formData,
     [e.target.id]:e.target.value
@@ -124,7 +112,6 @@ const handleSubmit= async (e)=>{
       setLoading(true);
       setError(false);
 
-      if(+formData.regularPrice<+formData.discountPrice){ setLoading(false); return setError("Discount Price must be less than regular Price ")}
       const res = await fetch('/api/listing/create', {
         method: 'POST',
         headers: {
@@ -157,17 +144,17 @@ const handleSubmit= async (e)=>{
  <main className='p-3 max-w-4xl mx-auto  '>
       <h1 style={{ fontFamily: 'Anton' }}
     className=' text-3xl text-center text-tealc  my-7 '>
-        Create a Listing
+       Report an Issue
       </h1>
       <form onSubmit={handleSubmit}className='flex flex-col sm:flex-row gap-4'>
         <div className='flex flex-col gap-4 flex-1'>
             <input type="text"
             className='border-4 border-tealc focus:outline-none p-3 rounded-lg placeholder-black'
-            placeholder='Name' 
-            id='name' maxLength='62' 
+            placeholder='Issue' 
+            id='issue' maxLength='62' 
             minLength='10' 
             required onChange={handleChange}
-            value={formData.name} ></input>
+            value={formData.issue} ></input>
             
             <textarea type="text"
            className='border-4 border-tealc focus:outline-none p-3 rounded-lg placeholder-black'
@@ -182,57 +169,29 @@ const handleSubmit= async (e)=>{
             value={formData.address} ></input>
         <div className='flex gap-6 flex-wrap'>
             <div className='flex gap-2'>
-          <input type="checkbox" id="sale" className='w-5'onChange={handleChange} checked={formData.type==='sale'}/>                        
-                        <span>Sale</span>
+          <input type="checkbox" id="airpollution" className='w-5'onChange={handleChange} checked={formData.type==='airpollution'}/>                        
+                        <span>airpollution</span>
             </div>
             <div className='flex gap-2'>
-                        <input type="checkbox" id="rent" className='w-5 'onChange={handleChange} checked={formData.type==='rent'}/>                        
-                        <span>Rent</span>
+                        <input type="checkbox" id="waterpollution" className='w-5 'onChange={handleChange} checked={formData.type==='waterpollution'}/>                        
+                        <span>waterpollution</span>
             </div>
             <div className='flex gap-2'>
-                        <input type="checkbox" id="parking" className='w-5'onChange={handleChange} checked={formData.parking}/>                        
-                        <span>Parking Spot</span>
-            </div>
+                        <input type="checkbox" id="deforestation" className='w-5 'onChange={handleChange} checked={formData.type==='deforestation'}/>                        
+                        <span>deforestation</span>
+            </div> 
             <div className='flex gap-2'>
-                        <input type="checkbox" id="furnished" className='w-5'onChange={handleChange} checked={formData.furnished}/>                        
-                        <span>Furnished</span>
-            </div>
+                        <input type="checkbox" id="illegaldumping" className='w-5 'onChange={handleChange} checked={formData.type==='illegaldumping'}/>                        
+                        <span>illegaldumping</span>
+            </div> 
             <div className='flex gap-2'>
-                        <input type="checkbox" id="offer" className='w-5'onChange={handleChange} checked={formData.offer}/>                        
-                        <span>Offer</span>
-            </div>
-        </div>
-        <div className='flex flex-wrap gap-6'>
-             <div className='flex items-center gap-2'>
-                    <input className='border-4 border-tealc flex-col sm:flex-row focus:outline-none p-3 rounded-lg placeholder-black'type="number" id="bedrooms" min='1' max='10' required onChange={handleChange}
-            value={formData.bedrooms}></input>
-                    <p >Beds</p>
-             </div>
-             <div className='flex flex-wrap items-center gap-2'>
-                    <input className='border-4 border-tealc focus:outline-none p-3 rounded-lg placeholder-black' type="number" id="bathrooms" min='1' max='10' required  onChange={handleChange}
-            value={formData.bathrooms}></input>
-                    <p >Baths</p>
-             </div>             
-             <div className='flex flex-wrap items-center gap-2'>
-                    <input className='border-4 border-tealc flex-col sm:flex-row focus:outline-none p-3 rounded-lg placeholder-black' type="number" id="regularPrice" min='1' max='100000' required  onChange={handleChange}
-            value={formData.regularPrice}></input>
-                    <div className='flex flex-col items-center'>
-                    <p >Regular Price</p>
-                    <span className='textxs'>(Rs /month)</span>
-                    </div>
-             </div>
-             {formData.offer&&(
-              <div className='flex flex-wrap items-center gap-2'>
-                    <input className='border-4 border-tealc focus:outline-none p-3 rounded-lg' type="number" id="discountPrice" min='0' max='100000' required onChange={handleChange}
-            value={formData.discountPrice}></input>
-                    <div className='flex flex-col items-center'>
-                    <p >Discount Price </p>
-                    <span className='textxs'>(Rs /month)</span>
-                    </div>
-             </div>
-             )
-             }
-             
+                        <input type="checkbox" id="energywaste" className='w-5 'onChange={handleChange} checked={formData.type==='energywaste'}/>                        
+                        <span>energywastet</span>
+            </div>  
+            <div className='flex gap-2'>
+                        <input type="checkbox" id="other" className='w-5 'onChange={handleChange} checked={formData.type==='other'}/>                        
+                        <span>other</span>
+            </div>             
         </div>
         </div>
         {/* right side */}
@@ -263,7 +222,7 @@ const handleSubmit= async (e)=>{
             ))
           }
           <button disabled={loading|| uploading}   className='p-3 bg-slate-700  text white rounded-lg uppercase hover:opcaity-95 disabled :opacity-80'>
-            {loading?'Creating... ' :"Create Listing"}</button>
+            {loading?'Reporting... ' :"Report Issue"}</button>
             {error && <p style={{ fontFamily: 'Anton',fontSize:15 }}className='text-red-700 mt-3 text-extrabold text-lg p-2 rounded'>{error}</p>}
         </div>
     </form>  

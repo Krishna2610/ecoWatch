@@ -13,7 +13,10 @@ import Search from "./pages/Search"
 
 
 export default function App() {
+
+  
   return (
+
     <BrowserRouter> 
     <Header/>
     <Routes >

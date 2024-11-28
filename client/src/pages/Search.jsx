@@ -7,9 +7,6 @@ export default function Search() {
   const [sidebardata, setSidebardata] = useState({
     searchTerm: '',
     type: 'all',
-    parking: false,
-    furnished: false,
-    offer: false,
     sort: 'created_at',
     order: 'desc',
   });
@@ -22,27 +19,18 @@ export default function Search() {
     const urlParams = new URLSearchParams(location.search);
     const searchTermFromUrl = urlParams.get('searchTerm');
     const typeFromUrl = urlParams.get('type');
-    const parkingFromUrl = urlParams.get('parking');
-    const furnishedFromUrl = urlParams.get('furnished');
-    const offerFromUrl = urlParams.get('offer');
     const sortFromUrl = urlParams.get('sort');
     const orderFromUrl = urlParams.get('order');
 
     if (
       searchTermFromUrl ||
       typeFromUrl ||
-      parkingFromUrl ||
-      furnishedFromUrl ||
-      offerFromUrl ||
       sortFromUrl ||
       orderFromUrl
     ) {
       setSidebardata({
         searchTerm: searchTermFromUrl || '',
         type: typeFromUrl || 'all',
-        parking: parkingFromUrl === 'true' ? true : false,
-        furnished: furnishedFromUrl === 'true' ? true : false,
-        offer: offerFromUrl === 'true' ? true : false,
         sort: sortFromUrl || 'created_at',
         order: orderFromUrl || 'desc',
       });
@@ -69,8 +57,13 @@ export default function Search() {
   const handleChange = (e) => {
     if (
       e.target.id === 'all' ||
-      e.target.id === 'rent' ||
-      e.target.id === 'sale'
+      e.target.id === 'airpolltion' ||
+      e.target.id === 'waterpollution'||
+      e.target.id === 'airpollution' ||
+      e.target.id === 'deforestation' ||
+      e.target.id === 'illegaldumping' ||
+      e.target.id === 'energywaste' ||
+      e.target.id === 'other'
     ) {
       setSidebardata({ ...sidebardata, type: e.target.id });
     }
@@ -79,18 +72,7 @@ export default function Search() {
       setSidebardata({ ...sidebardata, searchTerm: e.target.value });
     }
 
-    if (
-      e.target.id === 'parking' ||
-      e.target.id === 'furnished' ||
-      e.target.id === 'offer'
-    ) {
-      setSidebardata({
-        ...sidebardata,
-        [e.target.id]:
-          e.target.checked || e.target.checked === 'true' ? true : false,
-      });
-    }
-
+    
     if (e.target.id === 'sort_order') {
       const sort = e.target.value.split('_')[0] || 'created_at';
 
@@ -105,9 +87,6 @@ export default function Search() {
     const urlParams = new URLSearchParams();
     urlParams.set('searchTerm', sidebardata.searchTerm);
     urlParams.set('type', sidebardata.type);
-    urlParams.set('parking', sidebardata.parking);
-    urlParams.set('furnished', sidebardata.furnished);
-    urlParams.set('offer', sidebardata.offer);
     urlParams.set('sort', sidebardata.sort);
     urlParams.set('order', sidebardata.order);
     const searchQuery = urlParams.toString();
@@ -154,61 +133,69 @@ export default function Search() {
                 onChange={handleChange}
                 checked={sidebardata.type === 'all'}
               />
-              <span>Rent & Sale</span>
+              <span>All</span>
             </div>
             <div className='flex gap-2'>
               <input
                 type='checkbox'
-                id='rent'
+                id='airpollution'
                 className='w-5'
                 onChange={handleChange}
-                checked={sidebardata.type === 'rent'}
+                checked={sidebardata.type === 'airpollution'}
               />
-              <span>Rent</span>
+              <span>airpollution</span>
             </div>
             <div className='flex gap-2'>
               <input
                 type='checkbox'
-                id='sale'
+                id='waterpollution'
                 className='w-5'
                 onChange={handleChange}
-                checked={sidebardata.type === 'sale'}
+                checked={sidebardata.type === 'waterpollution'}
               />
-              <span>Sale</span>
+              <span>waterpollution</span>
             </div>
             <div className='flex gap-2'>
               <input
                 type='checkbox'
-                id='offer'
+                id='deforestation'
                 className='w-5'
                 onChange={handleChange}
-                checked={sidebardata.offer}
+                checked={sidebardata.type === 'deforestation'}
               />
-              <span>Offer</span>
-            </div>
-          </div>
-          <div className='flex gap-2 flex-wrap items-center'>
-            <label className='font-semibold'>Amenities:</label>
-            <div className='flex gap-2'>
-              <input
-                type='checkbox'
-                id='parking'
-                className='w-5 '
-                onChange={handleChange}
-                checked={sidebardata.parking}
-              />
-              <span>Parking</span>
+              <span>deforestation</span>
             </div>
             <div className='flex gap-2'>
               <input
                 type='checkbox'
-                id='furnished'
+                id='illegaldumping'
                 className='w-5'
                 onChange={handleChange}
-                checked={sidebardata.furnished}
+                checked={sidebardata.type === 'illegaldumping'}
               />
-              <span>Furnished</span>
+              <span>illegaldumping</span>
             </div>
+            <div className='flex gap-2'>
+              <input
+                type='checkbox'
+                id='energywaste'
+                className='w-5'
+                onChange={handleChange}
+                checked={sidebardata.type === 'energywaste'}
+              />
+              <span>energywaste</span>
+            </div>
+            <div className='flex gap-2'>
+              <input
+                type='checkbox'
+                id='other'
+                className='w-5'
+                onChange={handleChange}
+                checked={sidebardata.type === 'other'}
+              />
+              <span>other</span>
+            </div>
+            
           </div>
           <div className='flex items-center gap-2'>
             <label className='font-semibold'>Sort:</label>
@@ -218,8 +205,6 @@ export default function Search() {
               id='sort_order'
               className='border rounded-lg p-3'
             >
-              <option value='regularPrice_desc'>Price high to low</option>
-              <option value='regularPrice_asc'>Price low to hight</option>
               <option value='createdAt_desc'>Latest</option>
               <option value='createdAt_asc'>Oldest</option>
             </select>
@@ -235,7 +220,7 @@ export default function Search() {
           Listing results:
         </h1>
         <div style={{ fontFamily: 'Anton' }}
-    className=' text-3xl text-center text-tealc  my-7 '>
+    className=' text-3xl  flex flex-wrap text-center text-tealc gap-4  p-7 '>
           {!loading && listings.length === 0 && (
             <p className='text-xl text-slate-700'>No listing found!</p>
           )}

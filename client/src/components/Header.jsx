@@ -24,45 +24,45 @@ export default function Header() {
       }
     }, [location.search]);
     return (
-        <header className='bg-greyc shadow-md'>
+        <header className='bg-greyc bg-teal-900 shadow-md'>
         <div className='flex justify-between items-center max-w-6xl mx-auto p-3'>
         <Link to="/">
-        <img className='flex flex-wrap rounded-full h-20' src="/logo.png" alt="Logo" />
+        <img style={{ animation: 'spin 2s linear infinite' }} className='flex flex-wrap rounded-full h-20' src="/logo.png" alt="Logo" />
 </Link>
           <Link to='/'>
-            <h1 className="font-bold text-sm sm:text-4xl flex  flex-wrap font-custom" >
-              <span className="text-tealc font-bold "style={{ fontFamily: 'Anton' }}>Nest</span>
-              <span className="text-orangec font-thin"style={{ fontFamily: 'Dancing Script' }}>Connect</span>
+            <h1 className="font-extrabold  text-6xl sm:text-6xl flex  flex-wrap font-custom" >
+              <span className="text-yellow-100 font-extrabold  "style={{ fontFamily: 'Dancing Script' }}>eco</span>
+              <span className="text-green-600 font-extrabold "style={{ fontFamily: 'Dancing Script' }}>Watch</span>
             </h1>
           </Link>
           
 
           <form
             onSubmit={handleSubmit}
-            className='bg-greyc  text-black p-4 rounded-lg flex items-center '
+            className= 'bg-teal-900  text-black p-4 rounded-lg flex items-center '
           >
             <input
               type='text'
               
-              className=' focus:outline-none w-24 sm:w-64 bg-transparent text-tealc placeholder-brownc   font-bold ' placeholder="Search....."
+              className=' focus:outline-none w-24 sm:w-64 bg-transparent  bg-teal-900 placeholder-orange-200   font-bold ' placeholder="Search."
               style={{ fontFamily: 'Poetsen One',fontSize:30 }}
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
             <button>
-              <FaSearch className='text-brownc' />
+              <FaSearch className='text-orange-200' />
             </button>
           </form>
           <ul className='flex gap-4'>
             <Link to='/'>
-              <li style={{ fontFamily: 'Anton',fontSize:30 }}
-               className='hidden font-custom  text-2xl font-extrabold text-brownc sm:inline  hover:underline'>
+              <li style={{ fontFamily: 'Poestsen One',fontSize:30 }}
+               className='hidden font-custom  text-2xl font-extrabold text-orange-200 sm:inline  hover:underline'>
                 Home
               </li>
             </Link>
             <Link to='/about'>
-              <li style={{ fontFamily: 'Anton',fontSize:30 }}
-              className='hidden sm:inline font-custom  text-2xl  text-brownc   font-extrabold hover:underline'>
+              <li style={{ fontFamily: 'Poetsen One',fontSize:30 }}
+              className='hidden sm:inline font-custom  text-2xl  text-orange-200   font-extrabold hover:underline'>
                 About
               </li>
             </Link>
@@ -75,7 +75,7 @@ export default function Header() {
                   alt='profile'
                 />
               ) : (
-                <li className='font-custom  text-2xl font-extrabold text-tealc text- hover:underline'> Sign in</li>
+                <li className='font-custom  text-3xl font-extrabold text-orange-200 text- hover:underline'> Sign in</li>
               )}
             </Link>
           </ul>

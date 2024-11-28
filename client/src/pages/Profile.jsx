@@ -5,7 +5,7 @@ import { app } from '../firebase';
 import { updateUserFailure,updateUserSuccess,updateUserStart,deleteUserFailure,deleteUserStart,deleteUserSuccess, signoutUserStart, signoutUserFailure, signoutUserSuccess } from '../redux/user/userSlice';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import backgroundImage from './profileb.png'; // Import your image file
+import backgroundImage from './profile.jpeg'; // Import your image file
 
 export default function Profile() {
   const fileRef = useRef(null);
@@ -152,7 +152,7 @@ const handleListingDelete = async (listingId) => {
 
 
   return (
-    <div style={{ backgroundImage: `url(${backgroundImage}`, backgroundSize: 'cover',   backgroundAttachment: 'fixed',  }}>
+    <div style={{ backgroundImage: `url(${backgroundImage}`, backgroundSize: 'cover',   backgroundAttachment: 'fixed',backgroundPosition: 'center -450px' }}>
 <div
       className='p-3 max-w-lg mx-auto'
       
@@ -192,7 +192,7 @@ const handleListingDelete = async (listingId) => {
         
         </button>
         <Link className='bg-brownc p-3 text-bold text-black-700 rounded-lg uppercase text-center hover:opacity:75' to={"/create-listing"}>
-        Create listing
+        Report an issue
         </Link>
       </form>
       <div className='flex justify-between mt-5'>
@@ -201,13 +201,13 @@ const handleListingDelete = async (listingId) => {
       </div>
       <p style={{ fontFamily: 'Anton',fontSize:20 }} className='text-red-700 mt-3 text-extrabold text-lg p-2 rounded'>{error ? error:' ' }</p>
       <p style={{ fontFamily: 'Anton',fontSize:20 }} className='text-green-200 mt-3 text-extrabold text-lg p-2 rounded'>{updateSuccess ? "User is updated Successfully!!!":' ' }</p>
-      <button onClick={handleShowListings}className='text-white  bg-teal-700 rounded-lg p-3 border-greeen-700 w-full font-semibold'>Show Listings</button>
+      <button onClick={handleShowListings}className='text-white  bg-teal-700 rounded-lg p-3 border-greeen-700 w-full font-semibold'>Show Reported Issues</button>
       <p style={{ fontFamily: 'Anton',fontSize:20 }}className='text-red-700 mt-3 text-extrabold text-lg p-2 rounded'>{ShowListingsError ? "No Listings Available/Added " :" " }</p>
      {userListings && userListings.length>0 &&(
      <div className='flex flex-col gap-4'>
      <h1  style={{ fontFamily: 'Anton' }}
     className=' text-3xl text-center text-tealc  my-7 '>
-       Your Listings
+       Reported Issues 
      </h1>
      {userListings.map((listing) => (
        <div
@@ -226,7 +226,7 @@ const handleListingDelete = async (listingId) => {
            className='text-slate-700 text-xl hover:underline truncate flex-1'
            to={`/listing/${listing._id}`}
          >
-           <p >{listing.name}</p>
+           <p >{listing.issue}</p>
          </Link>
 
          <div className='flex flex-col item-center gap-2'>
