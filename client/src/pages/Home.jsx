@@ -45,19 +45,19 @@ export default function Home() {
       }
     };
 
-    const fetchNews = async () => {
-      try {
-        const response = await axios.get(
-          'https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=885a6a3dd2d34e72a5f7cf091b2052f4'
-        );
-        setNews(response.data.articles);
-      } catch (error) {
-        console.error('Error fetching news:', error);
-      }
-    };
+    // const fetchNews = async () => {
+    //   try {
+    //     const response = await axios.get(
+    //       'https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=885a6a3dd2d34e72a5f7cf091b2052f4'
+    //     );
+    //     setNews(response.data.articles);
+    //   } catch (error) {
+    //     console.error('Error fetching news:', error);
+    //   }
+    // };
 
     fetchDeforestationListings();
-    fetchNews();
+    // fetchNews();
   }, []);
 
   return (
