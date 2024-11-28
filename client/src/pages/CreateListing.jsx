@@ -14,7 +14,6 @@ export default function CreateListing() {
     description:'',
     address:'',
     type:'other',
-  
 
   })
 
